@@ -9,14 +9,15 @@ class LoginView extends StatelessWidget {
   String email = '';
   String senha = '';
 
-  void save() async {
+  void save(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       // var result = await auth.createUserWithEmailAndPassword(
       //   email: email, password: senha);
       var result =
           await auth.signInWithEmailAndPassword(email: email, password: senha);
-      //Navigator.push();
+
+      Navigator.of(context).pushNamed('/message');
     }
   }
 
@@ -93,12 +94,12 @@ class LoginView extends StatelessWidget {
                       },
                     ),
                     ElevatedButton(
-                      onPressed: save,
+                      onPressed: () => save(context),
                       child: Text("Enter"),
                       style: ElevatedButton.styleFrom(
                           primary: Colors.green,
                           padding: EdgeInsets.symmetric(
-                              horizontal: 80, vertical: 20),
+                              horizontal: 91, vertical: 20),
                           textStyle: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.bold)),
                     ),
@@ -109,7 +110,7 @@ class LoginView extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           primary: Colors.green,
                           padding: EdgeInsets.symmetric(
-                              horizontal: 54, vertical: 20),
+                              horizontal: 65, vertical: 20),
                           textStyle: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.bold)),
                     )

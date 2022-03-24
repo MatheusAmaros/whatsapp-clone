@@ -30,8 +30,8 @@ class RegisterView extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromARGB(255, 4, 140, 8).withOpacity(0.5),
-                  spreadRadius: 30,
+                  color: Color.fromARGB(255, 0, 85, 10).withOpacity(0.5),
+                  spreadRadius: 15,
                   blurRadius: 50,
                   offset: Offset(2, 7), // changes position of shadow
                 ),
@@ -106,6 +106,12 @@ class RegisterView extends StatelessWidget {
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.block),
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
       ),
     );
   }
