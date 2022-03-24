@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/view/mensagem.view.dart';
 
-class LoginView extends StatelessWidget {
+class RegisterView extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
   final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -12,11 +11,10 @@ class LoginView extends StatelessWidget {
   void save() async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      // var result = await auth.createUserWithEmailAndPassword(
-      //   email: email, password: senha);
-      var result =
-          await auth.signInWithEmailAndPassword(email: email, password: senha);
-      //Navigator.push();
+      var result = await auth.createUserWithEmailAndPassword(
+          email: email, password: senha);
+      //var result =
+      //  await auth.signInWithEmailAndPassword(email: email, password: senha);
     }
   }
 
@@ -51,7 +49,7 @@ class LoginView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "LOGIN",
+                      "CADASTRAR",
                       style: TextStyle(
                           fontSize: 40,
                           color: Colors.green,
@@ -94,25 +92,14 @@ class LoginView extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: save,
-                      child: Text("Enter"),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 80, vertical: 20),
-                          textStyle: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold)),
-                    ),
-                    ElevatedButton(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, '/register'),
                       child: Text("Cadastrar"),
                       style: ElevatedButton.styleFrom(
                           primary: Colors.green,
                           padding: EdgeInsets.symmetric(
-                              horizontal: 54, vertical: 20),
+                              horizontal: 65, vertical: 20),
                           textStyle: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.bold)),
-                    )
+                    ),
                   ],
                 ),
               ),
