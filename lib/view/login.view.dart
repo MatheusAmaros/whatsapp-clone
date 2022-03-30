@@ -24,11 +24,15 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: 
+        
+        Container(
         decoration: BoxDecoration(color: Colors.green),
         child: Center(
           child: Container(
+            
             decoration: BoxDecoration(
+              
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
@@ -40,8 +44,8 @@ class LoginView extends StatelessWidget {
                 ),
               ],
             ),
-            width: 300,
-            height: 400,
+            width: 400,
+            height: 500,
             child: Padding(
               padding: const EdgeInsets.all(30),
               child: Form(
@@ -51,23 +55,41 @@ class LoginView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      "LOGIN",
-                      style: TextStyle(
-                          fontSize: 40,
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold),
+                    //Container(
+                    //  child:  Icon(Icons.logout)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        /*
+                        Container(
+                          child: Image.asset('assets/images/texting.jpg',width:300,height:100),
+                        ),*/
+                        Text(
+                          "LOGIN",
+                          style: TextStyle(
+                              fontSize: 40,
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Icon(Icons.login, size:  40, color: Colors.green),
+                      ],
                     ),
+                    
                     TextFormField(
                       decoration: InputDecoration(
+                        hintText: "E-mail Address",
+                        hintStyle: TextStyle(color: Color.fromARGB(255, 165, 165, 165)),
                         labelText: "E-mail",
-                        labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 65, 55, 55),
-                          fontSize: 22,
-                          fontStyle: FontStyle.normal,
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.red)
                         ),
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 202, 202, 202),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(color: Colors.green)
+                        ),
+                        prefixIcon: Icon(Icons.email)
                       ),
                       onSaved: (value) => email = value!,
                       validator: (value) {
@@ -77,14 +99,19 @@ class LoginView extends StatelessWidget {
                     ),
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: "Senha",
-                        labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 65, 55, 55),
-                          fontSize: 22,
-                          fontStyle: FontStyle.normal,
+                        hintText: "Password",
+                        hintStyle: TextStyle(color: Color.fromARGB(255, 165, 165, 165)),
+                        labelText: "Password",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0))
                         ),
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 202, 202, 202),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(color: Colors.green)
+                        ),
+                        prefixIcon: Icon(Icons.password)
                       ),
                       obscureText: true,
                       onSaved: (value) => senha = value!,
@@ -97,23 +124,26 @@ class LoginView extends StatelessWidget {
                       onPressed: () => save(context),
                       child: Text("Enter"),
                       style: ElevatedButton.styleFrom(
+                          shape: StadiumBorder(),                       
                           primary: Colors.green,
                           padding: EdgeInsets.symmetric(
-                              horizontal: 91, vertical: 20),
+                              horizontal: 130, vertical: 20),
                           textStyle: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold)),
+                              fontSize: 25, fontWeight: FontWeight.bold)
+                              ),
                     ),
-                    ElevatedButton(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, '/register'),
-                      child: Text("Cadastrar"),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 65, vertical: 20),
-                          textStyle: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold)),
-                    )
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Não Tem cadastro? "),
+                        GestureDetector(
+                          child: Text("Cadastrar-se", style: TextStyle(decoration: TextDecoration.underline, color: Colors.blue)),
+                          onTap: () => Navigator.pushNamed(context, '/register'),
+                        )
+                        
+                    ]
+                    ),
+                    
                   ],
                 ),
               ),

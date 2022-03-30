@@ -11,6 +11,7 @@ class RegisterView extends StatelessWidget {
   void save() async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
+      print(email);
       var result = await auth.createUserWithEmailAndPassword(
           email: email, password: senha);
       //var result =
@@ -37,8 +38,8 @@ class RegisterView extends StatelessWidget {
                 ),
               ],
             ),
-            width: 300,
-            height: 400,
+            width: 400,
+            height: 500,
             child: Padding(
               padding: const EdgeInsets.all(30),
               child: Form(
@@ -48,23 +49,35 @@ class RegisterView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      "CADASTRAR",
-                      style: TextStyle(
-                          fontSize: 40,
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "CADASTRAR",
+                          style: TextStyle(
+                              fontSize: 40,
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Icon(Icons.account_circle_outlined,  size:  40, color: Colors.green)
+                      ],
                     ),
+                    
                     TextFormField(
                       decoration: InputDecoration(
+                        hintText: "E-mail Address",
+                        hintStyle: TextStyle(color: Color.fromARGB(255, 165, 165, 165)),
                         labelText: "E-mail",
-                        labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 65, 55, 55),
-                          fontSize: 22,
-                          fontStyle: FontStyle.normal,
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.red)
                         ),
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 202, 202, 202),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(color: Colors.green)
+                        ),
+                        prefixIcon: Icon(Icons.email)
                       ),
                       onSaved: (value) => email = value!,
                       validator: (value) {
@@ -74,14 +87,19 @@ class RegisterView extends StatelessWidget {
                     ),
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: "Senha",
-                        labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 65, 55, 55),
-                          fontSize: 22,
-                          fontStyle: FontStyle.normal,
+                        hintText: "Password",
+                        hintStyle: TextStyle(color: Color.fromARGB(255, 165, 165, 165)),
+                        labelText: "Password",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0))
                         ),
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 202, 202, 202),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(color: Colors.green)
+                        ),
+                        prefixIcon: Icon(Icons.password)
                       ),
                       obscureText: true,
                       onSaved: (value) => senha = value!,
@@ -94,11 +112,13 @@ class RegisterView extends StatelessWidget {
                       onPressed: save,
                       child: Text("Cadastrar"),
                       style: ElevatedButton.styleFrom(
+                          shape: StadiumBorder(),                       
                           primary: Colors.green,
                           padding: EdgeInsets.symmetric(
-                              horizontal: 65, vertical: 20),
+                              horizontal: 110, vertical: 20),
                           textStyle: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold)),
+                              fontSize: 25, fontWeight: FontWeight.bold)
+                      ),
                     ),
                   ],
                 ),
