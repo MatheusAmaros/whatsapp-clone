@@ -13,11 +13,11 @@ class App extends StatelessWidget {
     //print(auth.currentUser!.uid);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:
-          ChatView(), //auth.currentUser == null ? LoginView() : MensagemView(),
+      home: auth.currentUser == null ? LoginView() : ChatView(),
       routes: {
         '/login': (context) => LoginView(),
         '/message': (context) => MensagemView(),
+        '/chat': (context) => ChatView(),
         '/register': (context) => RegisterView(),
         //navigate = pilha
       },

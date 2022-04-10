@@ -59,26 +59,24 @@ class RegisterView extends StatelessWidget {
                               color: Colors.green,
                               fontWeight: FontWeight.bold),
                         ),
-                        Icon(Icons.account_circle_outlined,  size:  40, color: Colors.green)
+                        Icon(Icons.account_circle_outlined,
+                            size: 40, color: Colors.green)
                       ],
                     ),
-                    
                     TextFormField(
                       decoration: InputDecoration(
-                        hintText: "E-mail Address",
-                        hintStyle: TextStyle(color: Color.fromARGB(255, 165, 165, 165)),
-                        labelText: "E-mail",
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.red)
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: Colors.green)
-                        ),
-                        prefixIcon: Icon(Icons.email)
-                      ),
+                          hintText: "E-mail Address",
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 165, 165, 165)),
+                          labelText: "E-mail",
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(color: Colors.red)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(color: Colors.green)),
+                          prefixIcon: Icon(Icons.email)),
                       onSaved: (value) => email = value!,
                       validator: (value) {
                         if (value!.isEmpty) return "Campo E-mail obrigatório";
@@ -87,20 +85,19 @@ class RegisterView extends StatelessWidget {
                     ),
                     TextFormField(
                       decoration: InputDecoration(
-                        hintText: "Password",
-                        hintStyle: TextStyle(color: Color.fromARGB(255, 165, 165, 165)),
-                        labelText: "Password",
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0))
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: Colors.green)
-                        ),
-                        prefixIcon: Icon(Icons.password)
-                      ),
+                          hintText: "Password",
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 165, 165, 165)),
+                          labelText: "Password",
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 0, 0, 0))),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(color: Colors.green)),
+                          prefixIcon: Icon(Icons.password)),
                       obscureText: true,
                       onSaved: (value) => senha = value!,
                       validator: (value) {
@@ -112,13 +109,12 @@ class RegisterView extends StatelessWidget {
                       onPressed: save,
                       child: Text("Cadastrar"),
                       style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(),                       
+                          shape: StadiumBorder(),
                           primary: Colors.green,
                           padding: EdgeInsets.symmetric(
                               horizontal: 110, vertical: 20),
                           textStyle: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold)
-                      ),
+                              fontSize: 25, fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),
@@ -128,7 +124,7 @@ class RegisterView extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.block),
+        child: Icon(Icons.logout),
         onPressed: () {
           Navigator.of(context).pop();
         },

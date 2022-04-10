@@ -22,7 +22,7 @@ class MensagemView extends StatelessWidget {
             return CircularProgressIndicator();
           }
           if (snapshot.hasError) {
-            return Text("Erro ao carregar o dados");
+            return Text("Erro");
           }
 
           return ListView.builder(

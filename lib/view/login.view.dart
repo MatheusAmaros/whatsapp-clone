@@ -24,15 +24,11 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: 
-        
-        Container(
+      body: Container(
         decoration: BoxDecoration(color: Colors.green),
         child: Center(
           child: Container(
-            
             decoration: BoxDecoration(
-              
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
@@ -71,26 +67,24 @@ class LoginView extends StatelessWidget {
                               color: Colors.green,
                               fontWeight: FontWeight.bold),
                         ),
-                        Icon(Icons.login, size:  40, color: Colors.green),
+                        Icon(Icons.login, size: 40, color: Colors.green),
                       ],
                     ),
-                    
+
                     TextFormField(
                       decoration: InputDecoration(
-                        hintText: "E-mail Address",
-                        hintStyle: TextStyle(color: Color.fromARGB(255, 165, 165, 165)),
-                        labelText: "E-mail",
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.red)
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: Colors.green)
-                        ),
-                        prefixIcon: Icon(Icons.email)
-                      ),
+                          hintText: "E-mail Address",
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 165, 165, 165)),
+                          labelText: "E-mail",
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(color: Colors.red)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(color: Colors.green)),
+                          prefixIcon: Icon(Icons.email)),
                       onSaved: (value) => email = value!,
                       validator: (value) {
                         if (value!.isEmpty) return "Campo E-mail obrigatório";
@@ -99,20 +93,19 @@ class LoginView extends StatelessWidget {
                     ),
                     TextFormField(
                       decoration: InputDecoration(
-                        hintText: "Password",
-                        hintStyle: TextStyle(color: Color.fromARGB(255, 165, 165, 165)),
-                        labelText: "Password",
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0))
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: Colors.green)
-                        ),
-                        prefixIcon: Icon(Icons.password)
-                      ),
+                          hintText: "Password",
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 165, 165, 165)),
+                          labelText: "Password",
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 0, 0, 0))),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(color: Colors.green)),
+                          prefixIcon: Icon(Icons.password)),
                       obscureText: true,
                       onSaved: (value) => senha = value!,
                       validator: (value) {
@@ -124,26 +117,23 @@ class LoginView extends StatelessWidget {
                       onPressed: () => save(context),
                       child: Text("Enter"),
                       style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(),                       
+                          shape: StadiumBorder(),
                           primary: Colors.green,
                           padding: EdgeInsets.symmetric(
                               horizontal: 130, vertical: 20),
                           textStyle: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold)
-                              ),
+                              fontSize: 25, fontWeight: FontWeight.bold)),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Não Tem cadastro? "),
-                        GestureDetector(
-                          child: Text("Cadastrar-se", style: TextStyle(decoration: TextDecoration.underline, color: Colors.blue)),
-                          onTap: () => Navigator.pushNamed(context, '/register'),
-                        )
-                        
-                    ]
-                    ),
-                    
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Text("Não Tem cadastro? "),
+                      GestureDetector(
+                        child: Text("Cadastrar-se",
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                color: Colors.blue)),
+                        onTap: () => Navigator.pushNamed(context, '/register'),
+                      )
+                    ]),
                   ],
                 ),
               ),
