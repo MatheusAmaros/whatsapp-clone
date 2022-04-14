@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/model/mensagem.model.dart';
+import 'package:whatsapp_clone/model/usuario.model.dart';
 
 class MensagemItem extends StatelessWidget {
-  final MensagemModel model;
+  final UsuarioModel model;
 
   MensagemItem(this.model);
 
@@ -13,7 +14,7 @@ class MensagemItem extends StatelessWidget {
       onTap: () {
         // print(model.usuarios![0]);
         Navigator.of(context)
-            .pushNamed('/chat', arguments: {'uuid': model.usuarios![1]});
+            .pushNamed('/chat', arguments: {'uuid': model.id});
       },
       child: Container(
         margin: const EdgeInsets.fromLTRB(13, 7, 21, 7),
@@ -25,7 +26,7 @@ class MensagemItem extends StatelessWidget {
               height: 55,
               margin: const EdgeInsets.fromLTRB(2, 2, 8, 2),
               child: CircleAvatar(
-                backgroundImage: NetworkImage(model.imageUrl!),
+                backgroundImage: NetworkImage('https://picsum.photos/250?image=9'),
                 backgroundColor: Color.fromARGB(255, 132, 0, 255),
                 //radius: 27.5,
               ),
@@ -44,7 +45,7 @@ class MensagemItem extends StatelessWidget {
                   SizedBox(
                     height: 4,
                   ),
-                  Text(model.usuarios![1])
+                  Text("ultima mensagem")
                 ],
               ),
             ),
@@ -52,14 +53,14 @@ class MensagemItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(model.dataUltimaMensagem!.toString()),
+                //Text(model.dataUltimaMensagem!.toString()),
                 SizedBox(
                   height: 4,
                 ),
                 CircleAvatar(
                     radius: 11,
                     child: Text(
-                      model.quantidadeNaoLida!.toString(),
+                      "model.quantidadeNaoLida!.toString()",
                       style: TextStyle(color: Colors.white),
                     ),
                     backgroundColor: Color(0xFF1EBE71)

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/model/mensagem.model.dart';
+import 'package:whatsapp_clone/model/usuario.model.dart';
 import 'package:whatsapp_clone/view/mensagemItem.view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -13,9 +14,9 @@ class MensagemView extends StatelessWidget {
     return Scaffold(
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: firestore
-            .collection('mensagens')
-            .where('usuarios', arrayContains: auth.currentUser!.uid)
-            .orderBy('dataUltimaMensagem', descending: true)
+            .collection('usuarios')
+            //.where('usuarios', arrayContains: auth.currentUser!.uid)
+            //.orderBy('dataUltimaMensagem', descending: true)
             .snapshots(),
         builder: (_, snapshot) {
           if (!snapshot.hasData) {
@@ -24,11 +25,18 @@ class MensagemView extends StatelessWidget {
           if (snapshot.hasError) {
             return Text("Erro");
           }
+          
 
           return ListView.builder(
               itemCount: snapshot.data!.docs.length,
-              itemBuilder: (_, index) => MensagemItem(
-                  MensagemModel.fromMap(snapshot.data!.docs[index].data())));
+              itemBuilder: (_, index) {
+                if(snapshot.data!.docs[index].data()['id'] == auth.currentUser!.uid){
+                  return Text("");
+                }else { 
+                  return MensagemItem(UsuarioModel.fromMap(snapshot.data!.docs[index].data()));
+                }
+                
+              } );
         },
 
         // separatorBuilder: (_,i) => Divider(),

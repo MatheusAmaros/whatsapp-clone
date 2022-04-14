@@ -1,21 +1,29 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegisterView extends StatelessWidget {
+  final firestore = FirebaseFirestore.instance;
   var formKey = GlobalKey<FormState>();
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   String email = '';
   String senha = '';
+  String nome  = '';
 
   void save() async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      print(email);
       var result = await auth.createUserWithEmailAndPassword(
           email: email, password: senha);
       //var result =
       //  await auth.signInWithEmailAndPassword(email: email, password: senha);
+      await firestore.collection('usuarios').add({
+
+        "email": result.user!.email,
+        "id": result.user!.uid,
+        "nome": nome,
+      });
     }
   }
 
@@ -80,6 +88,26 @@ class RegisterView extends StatelessWidget {
                       onSaved: (value) => email = value!,
                       validator: (value) {
                         if (value!.isEmpty) return "Campo E-mail obrigatório";
+                        return null;
+                      },
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                          hintText: "Nome",
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 165, 165, 165)),
+                          labelText: "Nome",
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(color: Colors.red)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(color: Colors.green)),
+                          prefixIcon: Icon(Icons.email)),
+                      onSaved: (value) => nome = value!,
+                      validator: (value) {
+                        if (value!.isEmpty) return "Campo nome obrigatório";
                         return null;
                       },
                     ),

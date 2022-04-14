@@ -7,7 +7,9 @@ import 'package:whatsapp_clone/view/chatItem.view.dart';
 import 'package:whatsapp_clone/view/mensagemItem.view.dart';
 
 class ChatView extends StatefulWidget {
-  //ChatView({Key? key, @required this.uuid}) : super(key: key);
+  final String? uuid;
+
+  ChatView({Key? key, @required this.uuid}) : super(key: key);
 
   @override
   State<ChatView> createState() => _ChatViewState();
@@ -23,7 +25,6 @@ class _ChatViewState extends State<ChatView> {
 
   void sendMessage(uidRec) async {
     var message = txtCtrl.text;
-    print(txtCtrl.text);
     await firestore.collection('conversas').add({
       "message": message,
       "data": DateTime.now(),
@@ -42,6 +43,7 @@ class _ChatViewState extends State<ChatView> {
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
+    List usuarios = [auth.currentUser!.uid.toString(), arguments['uuid'].toString()];
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -52,7 +54,7 @@ class _ChatViewState extends State<ChatView> {
                 .collection('conversas')
                 .where(
                   "usuarios",
-                  arrayContains: auth.currentUser!.uid.toString(),
+                  arrayContains: usuarios[0],
                 )
                 .orderBy("data", descending: true)
                 .snapshots(),
